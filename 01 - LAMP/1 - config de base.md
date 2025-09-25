@@ -1,4 +1,4 @@
-# 1/5 - Configuration réseau statique sur Ubuntu 24 (VM Proxmox)
+# 1/5 - Configuration de base pour serveur LAMP
 
 ## 1) Côté Proxmox
 - Vérifier que la machine virtuelle est reliée au bon bridge réseau (exemple : `vmbrX` utilisé pour le réseau étudiant).  
@@ -37,7 +37,9 @@ network:
         - to: default
           via: 192.168.x.1
       nameservers:
-        addresses: [8.8.8.8, 1.1.1.1]
+        addresses:
+          - 8.8.8.8
+          - 192.168.x.1
 ```
 
 ### Étape 3 : Appliquer la configuration
