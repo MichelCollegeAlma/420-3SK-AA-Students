@@ -53,9 +53,9 @@ Adaptez la procédure suivante selon votre réseau.
 
 ---
 
-## 3 Installation
+## 3 Installation sur  les serveurs `primaire` et `secondaire`
 
-1. **Mettre à jour les serveurs :**
+1. **Mettre à jour les serveurs `primaire` et `secondaire`:**
    ```bash
    sudo apt update && sudo apt upgrade -y
    ```
