@@ -228,6 +228,25 @@ nslookup host1.formation.lan
 Résultat attendu:
 
 ![img.png](img/2-test1.png)
+
+Ça ne fonctionne pas ?
+
+Éditez `/etc/resolv.conf` pour pointer vers le serveur primaire.
+
+Exemple :
+
+```text
+nameserver 192.168.x.3
+```
+
+Relancez Bind9 :
+
+```bash
+service bind9 restart
+```
+
+Continuez les tests
+
 ```bash
 dig host1.formation.lan
 ```
@@ -246,12 +265,4 @@ nslookup 192.168.x.11
 Résultat attendu:
 
 ![img.png](img/2-test4.png)
-
-Si nécessaire, éditez `/etc/resolv.conf` pour pointer vers le serveur primaire.
-
-Exemple :
-
-```text
-nameserver 192.168.x.3
-```
 
