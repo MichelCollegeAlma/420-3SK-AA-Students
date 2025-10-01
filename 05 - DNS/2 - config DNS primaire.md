@@ -45,7 +45,6 @@ include "/etc/bind/named.conf.default-zones";
 ---
 
 ## 4) Serveur de cache
-
 Modifiez `/etc/bind/named.conf.options` pour configurer les forwarders (serveurs DNS de votre fournisseur Internet). 
 
 Pour les connaitre, utilisez la commande `ipconfig/all` sur votre portable étudiant et trouvez les IP des serveurs DNS.
@@ -69,6 +68,22 @@ options {
     listen-on { any; };
     allow-query { any; };
 };
+```
+
+Redémarrez Bind9 :
+
+```bash
+service bind9 restart
+```
+
+Le service ne démarre pas...
+
+Cette erreur ce produit parce que vous n'avez pas le fichier `named.conf.lan` dans le dossier, si vous vérifiez, vous trouverez le fichier `named.conf.local`.
+
+Renommez `named.conf.local` en `named.conf.lan`.
+
+```text
+sudo mv /etc/bind/named.conf.local /etc/bind/named.conf.lan
 ```
 
 Redémarrez Bind9 :
