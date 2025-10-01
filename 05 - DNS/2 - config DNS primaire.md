@@ -47,7 +47,7 @@ include "/etc/bind/named.conf.default-zones";
 ## 4) Serveur de cache
 Modifiez `/etc/bind/named.conf.options` pour configurer les forwarders (serveurs DNS de votre fournisseur Internet). 
 
-Pour les connaitre, utilisez la commande `ipconfig/all` sur votre portable étudiant et trouvez les IP des serveurs DNS.
+Pour les connaitre, utilisez la commande `ipconfig /all` sur votre portable étudiant et trouvez les IP des serveurs DNS.
 
 Par exemple :
 
