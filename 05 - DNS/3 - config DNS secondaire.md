@@ -11,7 +11,7 @@ Le serveur secondaire réplique les zones gérées par le primaire et reste sync
 ## 1) Configuration de l’interface réseau
 
 Attribuez une adresse IP fixe au serveur secondaire.  
-Exemple : `192.168.100.4` pour `secondaire.formation.lan`.
+Exemple : `192.168.x.4` pour `secondaire.formation.lan`.
 
 ---
 
@@ -46,21 +46,21 @@ include "/etc/bind/named.conf.default-zones";
 
 ## 4) Modifier le serveur primaire pour autoriser le secondaire
 
-Sur le serveur **primaire** (ex. `192.168.100.3`), éditez `/etc/bind/named.conf.lan` :
+Sur le serveur **primaire** (ex. `192.168.x.3`), éditez `/etc/bind/named.conf.lan` :
 
 ```text
 zone "formation.lan" IN {
     type master;
     file "/etc/bind/db.formation.lan";
     notify yes;
-    allow-transfer { 192.168.100.4; };
+    allow-transfer { 192.168.x.4; };
 };
 
-zone "100.168.192.in-addr.arpa" {
+zone "x.168.192.in-addr.arpa" {
     type master;
-    file "/etc/bind/db.100.168.192";
+    file "/etc/bind/db.x.168.192";
     notify yes;
-    allow-transfer { 192.168.100.4; };
+    allow-transfer { 192.168.x.4; };
 };
 ```
 
@@ -68,10 +68,10 @@ Ajoutez dans `/etc/bind/db.formation.lan` :
 
 ```text
 @       IN      NS      secondaire.
-secondaire IN   A       192.168.100.4
+secondaire IN   A       192.168.x.4
 ```
 
-Ajoutez dans `/etc/bind/db.100.168.192` :
+Ajoutez dans `/etc/bind/db.x.168.192` :
 
 ```text
 @       IN      NS      secondaire.formation.lan.
@@ -88,19 +88,19 @@ sudo service bind9 restart
 
 ## 5) Configurer le secondaire pour récupérer les zones
 
-Sur le serveur **secondaire** (`192.168.100.4`), éditez `/etc/bind/named.conf.lan` :
+Sur le serveur **secondaire** (`192.168.x.4`), éditez `/etc/bind/named.conf.lan` :
 
 ```text
 zone "formation.lan" {
     type slave;
     file "/var/cache/bind/db.formation.lan";
-    masters { 192.168.100.3; };
+    masters { 192.168.x.3; };
 };
 
-zone "100.168.192.in-addr.arpa" {
+zone "x.168.192.in-addr.arpa" {
     type slave;
-    file "/var/cache/bind/db.100.168.192";
-    masters { 192.168.100.3; };
+    file "/var/cache/bind/db.x.168.192";
+    masters { 192.168.x.3; };
 };
 ```
 
@@ -122,7 +122,7 @@ sudo service bind9 restart
 
 ```bash
 ping formation.lan
-nslookup host1.formation.lan 192.168.100.4
+nslookup host1.formation.lan 192.168.x.4
 ```
 
 Le serveur secondaire doit répondre correctement.
