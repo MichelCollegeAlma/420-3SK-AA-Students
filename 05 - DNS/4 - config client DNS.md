@@ -12,7 +12,7 @@ Cette étape consiste à configurer les postes clients (Windows et Linux) pour q
    ping host1.formation.lan
    ```  
    Si cela échoue, configurez manuellement les serveurs DNS.  
-3) Dans les paramètres réseau, attribuez en **DNS primaire** l’adresse `192.168.100.3` (serveur primaire) et en **DNS secondaire** l’adresse `192.168.100.4` (serveur secondaire).  
+3) Dans les paramètres réseau, attribuez en **DNS primaire** l’adresse `192.168.x.3` (serveur primaire) et en **DNS secondaire** l’adresse `192.168.x.4` (serveur secondaire).  
 4) Tester de nouveau, effectuez un `ping` vers un hôte de votre domaine :
    ```cmd
    ping host1.formation.lan
@@ -38,7 +38,7 @@ Cette étape consiste à configurer les postes clients (Windows et Linux) pour q
 2) Éditez le fichier `/etc/systemd/resolved.conf` :  
    ```text
    [Resolve]
-   DNS=192.168.100.3 192.168.100.4
+   DNS=192.168.x.3 192.168.x.4
    FallbackDNS=8.8.8.8 8.8.4.4
    ```  
 3) Rechargez le service :  
@@ -71,7 +71,7 @@ Cette étape consiste à configurer les postes clients (Windows et Linux) pour q
    ```bash
    resolvectl status
    ```  
-   Vous devez voir vos serveurs `192.168.100.3` et `192.168.100.4` listés dans la section DNS Servers..  
+   Vous devez voir vos serveurs `192.168.x.3` et `192.168.x.4` listés dans la section DNS Servers..  
 
 ![img.png](img/4%20-%20resolvectl.png)
 

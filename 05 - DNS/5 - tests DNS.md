@@ -30,7 +30,7 @@ sudo service bind9 restart
 
 ---
 
-## 3) Tests sur le serveur primaire (192.168.100.3)
+## 3) Tests sur le serveur primaire (192.168.x.3)
 
 1) Test de la **zone directe** :  
 ```bash
@@ -39,7 +39,7 @@ dig formation.lan
 
 2) Test de la **zone inverse** :  
 ```bash
-dig 100.168.192.in-addr.arpa
+dig x.168.192.in-addr.arpa
 ```
 
 3) Test résolution **nom → IP** :  
@@ -50,8 +50,8 @@ nslookup host1.formation.lan
 
 4) Test résolution **IP → nom** :  
 ```bash
-dig -x 192.168.100.11
-nslookup 192.168.100.11
+dig -x 192.168.x.11
+nslookup 192.168.x.11
 ```
 
 5) Test résolution externe via forwarders :  
@@ -61,7 +61,7 @@ nslookup google.com
 
 ---
 
-## 4) Tests sur le serveur secondaire (192.168.100.4)
+## 4) Tests sur le serveur secondaire (192.168.x.4)
 
 1) Vérifiez que les zones sont bien répliquées :  
 ```bash
@@ -76,8 +76,8 @@ nslookup host1.formation.lan 127.0.0.1
 
 3) Test résolution **IP → nom** via le secondaire :  
 ```bash
-dig @127.0.0.1 -x 192.168.100.11
-nslookup 192.168.100.11 127.0.0.1
+dig @127.0.0.1 -x 192.168.x.11
+nslookup 192.168.x.11 127.0.0.1
 ```
 
 4) Test résolution externe :  
@@ -102,7 +102,7 @@ dig host2.formation.lan
 
 3) Test résolution **IP → nom** :  
 ```bash
-dig -x 192.168.100.12
+dig -x 192.168.x.12
 ```
 
 4) Test résolution externe :  
@@ -123,7 +123,7 @@ dig host1.formation.lan +trace
 ```cmd
 ipconfig /all
 ```  
-Vous devez voir `192.168.100.3` et `192.168.100.4` en DNS.
+Vous devez voir `192.168.x.3` et `192.168.x.4` en DNS.
 
 2) Test résolution **nom → IP** :  
 ```cmd
@@ -133,7 +133,7 @@ ping host2.formation.lan
 
 3) Test résolution **IP → nom** :  
 ```cmd
-nslookup 192.168.100.11
+nslookup 192.168.x.11
 ```
 
 4) Test résolution externe :  
@@ -154,16 +154,16 @@ sudo systemctl stop bind9
 Le secondaire doit répondre.
     - Depuis host1 (Linux) :
         ```bash
-        dig @192.168.100.4 host1.formation.lan
+        dig @192.168.x.4 host1.formation.lan
         ```  
 ![img.png](img/5-dig-host1.png)
         ```bash
-        nslookup host1.formation.lan 192.168.100.4
+        nslookup host1.formation.lan 192.168.x.4
         ```
 ![img.png](img/5-dig_linux.png)
     - Depuis Windows (poste étudiant) :
         ```bash
-        nslookup host1.formation.lan 192.168.100.4
+        nslookup host1.formation.lan 192.168.x.4
         ```  
 ![img.png](img/5-nslookup_windows.png)
 
@@ -172,7 +172,7 @@ Le secondaire doit répondre.
 - Redémarrez bind9 sur le primaire.  
 - Vérifiez que le secondaire réplique la modification :  
 ```bash
-dig @192.168.100.4 host4.formation.lan
+dig @192.168.x.4 host4.formation.lan
 ```
 
 3) Test de **performances** (optionnel) :  
