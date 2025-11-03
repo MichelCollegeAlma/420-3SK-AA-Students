@@ -12,4 +12,4 @@
 
 ### 5. `BONUS` Installez une instance de `Prometheus` (et son plugin wordpress) pour faire une surveillance des installations de `Wordpress`.
 
-![](docker_wp.drawio.png)
+![](docker_wp_2.drawio.png)
