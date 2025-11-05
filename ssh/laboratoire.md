@@ -20,7 +20,7 @@
 ## 1. Préparation
 
 - Installer **Docker Desktop** ou **Docker Engine**.
-- Télécharger le fichier `docker-compose.yml` fourni.
+- Créer le fichier `docker-compose.yml` pas fournis.
 - Ouvrir un terminal dans le dossier du laboratoire.
 
 ---
@@ -254,33 +254,46 @@ Supprime les conteneurs et leurs volumes (y compris les clés).
 
 ### Préparation
 ☐ Docker installé
+
 ☐ Fichier `docker-compose.yml` téléchargé
+
 ☐ Conteneurs lancés avec `docker compose up -d`
+
 ☐ Connexion testée à `clientPing` et `clientPong` via mot de passe
 
 ### Génération de clés
 ☐ Clé ED25519 générée avec `ssh-keygen -t ed25519`
+
 ☐ Clé RSA 4096 bits générée avec `ssh-keygen -t rsa -b 4096`
+
 ☐ Clés sauvegardées dans `~/.ssh/`
+
 ☐ Permissions correctes (`~/.ssh` = 700, `id_*` = 600, `id_*.pub` = 644)
 
 ### Échange de clés
 ☐ `ssh-copy-id` exécuté de clientPing → clientPong
+
 ☐ `ssh-copy-id` exécuté de clientPong → clientPing
+
 ☐ Connexion SSH réussie sans mot de passe dans les deux sens
 
 ### Vérification du fonctionnement
 ☐ Test de connexion : `ssh -vvv Ping`
+
 ☐ Clé présente dans `authorized_keys`
+
 ☐ Empreintes dans `known_hosts`
 
 ### Configuration `~/.ssh/config`
 ☐ Fichier créé avec Host Ping et Host Pong
+
 ☐ Tests `ssh Ping` et `ssh Pong` réussis
 
 ### Sécurité et agent
 ☐ `ssh-agent` configuré et clé ajoutée
+
 ☐ Restrictions ajoutées dans `authorized_keys`
+
 ☐ Accès par mot de passe désactivé
 
 ### Nettoyage
