@@ -1,0 +1,68 @@
+version: "3.8"
+
+services:
+  clientPing:
+    image: lscr.io/linuxserver/openssh-server:latest
+    container_name: clientPing
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - PASSWORD_ACCESS=true        # Mettre à false à l’étape 10
+      - USER_NAME=clientPing
+      - USER_PASSWORD=clientPing
+    ports:
+      - "2222:2222"
+    networks:
+      docker_network:
+        ipv4_address: 172.20.0.10
+    volumes:
+      - ./ping_config:/config
+
+  clientPong:
+    image: lscr.io/linuxserver/openssh-server:latest
+    container_name: clientPong
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - PASSWORD_ACCESS=true
+      - USER_NAME=clientPong
+      - USER_PASSWORD=clientPong
+    ports:
+      - "2223:2222"
+    networks:
+      docker_network:
+        ipv4_address: 172.20.0.11
+    volumes:
+      - ./pong_config:/config
+
+  clientTest:
+    image: lscr.io/linuxserver/openssh-server:latest
+    container_name: clientTest
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - PASSWORD_ACCESS=true
+      - USER_NAME=clientTest
+      - USER_PASSWORD=clientTest
+    ports:
+      - "2224:2222"
+    networks:
+      docker_network:
+        ipv4_address: 172.20.0.12
+    volumes:
+      - ./test_config:/config
+
+networks:
+  docker_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+
+volumes:
+  ping_config:
+  pong_config:
+  test_config:
