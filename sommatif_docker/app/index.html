@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Application Nginx — Examen Docker Compose</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    code { background: #f5f5f5; padding: 2px 4px; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>Application statique (service app)</h1>
+  <p>Cette page est servie par le service <strong>app</strong> (Nginx) derrière un reverse proxy.</p>
+  <ul>
+    <li>URL publique de l'application : <code>/app/</code></li>
+    <li>Service complémentaire : <code>/whoami/</code> (inspecteur HTTP)</li>
+  </ul>
+  <p>Architecture utilisée :</p>
+  <pre>
+client → reverse-proxy (Nginx) → app (Nginx)
+                             ↳ whoami (containous/whoami)
+  </pre>
+</body>
+</html>
