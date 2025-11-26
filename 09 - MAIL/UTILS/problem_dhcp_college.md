@@ -1,4 +1,4 @@
-# Problème de DHCP
+# Problème de DHCP sur le serveur du collège
 
 Vous ne réussissez pas à avoir un ip valida en DHCP ?
 
