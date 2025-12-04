@@ -1,4 +1,4 @@
-# TP2 - `Minecraft` VS `The World` [6,5 %]
+# TP2 - `Minecraft` VS `The World` [9 %]
 
 Vous avez configurer un serveur Minecraft qui gagne en popularité au collège.
 

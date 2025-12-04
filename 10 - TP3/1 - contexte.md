@@ -1,4 +1,4 @@
-# TP3 - Serveur Mail `formation.lan` [4 %]
+# TP3 - Serveur Mail `formation.lan` [10 %]
 
 ## 1/6 - Contexte
 
